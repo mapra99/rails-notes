@@ -244,7 +244,17 @@ On the CLI the following statement can be typed to get all the routes of the pro
 rails routes
 ```
 
+#### Root
 
+The simplest route in the `routes.rb` file is the root. Usually the root is used to give the route of the homepage. So, in the `routes.rb ` file, the root can be set this way:
+
+```ruby
+Rails.application.routes.draw do
+    root "<resource>#<method_name>"
+end
+```
+
+So the established route will send the request to the method `<method_name>` from the resource `<resource>` , which is defined in the controller.
 
 ## Deployments on Heroku
 
