@@ -256,6 +256,28 @@ end
 
 So the established route will send the request to the method `<method_name>` from the resource `<resource>` , which is defined in the controller.
 
+#### REST Routes
+
+Recalling the [REST architecture](#rest-architecture), there is always a series of operations of interest to do on a resource. The corresponding routes would be (taking a resource called `posts` as example):
+
+```ruby
+  get "/posts", to: "posts#index"
+  get "/posts/:id", to: "posts#show"
+  get "/posts/new", to: "posts#new"
+  post "/posts", to: "posts#create"  # usually a submitted form
+  get "/posts/:id/edit", to: "posts#edit"
+  put "/posts/:id", to: "posts#update" # usually a submitted form
+  delete "/posts/:id", to: "posts#destroy"
+```
+
+In order to speed up this repetitive process of creating a series of routes for every REST operation, This command can be used instead:
+
+```ruby
+ resources :posts
+```
+
+
+
 ## Deployments on Heroku
 
 There are some main changes that are needed to be made. 
