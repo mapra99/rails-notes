@@ -282,6 +282,12 @@ If not all the REST operations are wanted, the `only` and `except` modifiers can
 resources :posts, only: [:inde, :show]
 ```
 
+If multiple resources want to be created, a single call can be used:
+
+```ruby
+resources :<res1>, :<res2>, :<res3>
+```
+
 As a reference, the Rails `resources` method creates the following routes:
 
 | Path             | Controller#Action | Used for                                     |
@@ -300,6 +306,28 @@ Although it is recommendable to stick to the REST operations whenever possible, 
 
 ```ruby
 get '/<path_to_resource>', to: '<controller>#<action>'
+```
+
+An alternative syntax would be:
+
+```ruby
+get '/<path_to_resource>', action: :<action>, controller: '<controller>'
+```
+
+#### Singular Routes
+
+Sometimes, you have a resource that clients always look up without referencing an ID. For example, you would like `/profile` to always show the profile of the currently logged in user. In this case, you can use a singular resource to map `/profile` (rather than `/profile/:id`) to the `show` action:
+
+```ruby
+#Option 1
+get 'profile', to: 'users#show'
+
+#Option 2
+get 'profile', action: :show, controller: 'users'
+
+#Option 3
+resource :users
+resolve('profile') {[:users]}
 ```
 
 #### Route Helpers
