@@ -591,4 +591,3 @@ There will be two objects on the app: *users* and *microposts*. Each one will ha
 3. [The Odin Project - Ruby on Rails Curriculum](https://www.theodinproject.com/courses/ruby-on-rails)
 4. [Video: What is MVC? Simple Explanation, by Traversy Media](https://youtu.be/pCvZtjoRq1I)
 5. [Video: What Is A RESTful API? Explanation of REST & HTTP. by Traversy Media](https://www.youtube.com/watch?v=Q-BpqyOT3a8)
-
