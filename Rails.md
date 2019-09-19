@@ -282,6 +282,18 @@ If not all the REST operations are wanted, the `only` and `except` modifiers can
 resources :posts, only: [:inde, :show]
 ```
 
+As a reference, the Rails `resources` method creates the following routes:
+
+| Path             | Controller#Action | Used for                                     |
+| ---------------- | ----------------- | -------------------------------------------- |
+| /photos          | photos#index      | display a list of all photos                 |
+| /photos/new      | photos#new        | return an HTML form for creating a new photo |
+| /photos          | photos#create     | create a new photo                           |
+| /photos/:id      | photos#show       | display a specific photo                     |
+| /photos/:id/edit | photos#edit       | return an HTML form for editing a photo      |
+| /photos/:id      | photos#update     | update a specific photo                      |
+| /photos/:id      | photos#destroy    | delete a specific photo                      |
+
 #### Non-REST Routes
 
 Although it is recommendable to stick to the REST operations whenever possible, Rails allows the use of other routes.
