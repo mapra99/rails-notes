@@ -314,6 +314,40 @@ An alternative syntax would be:
 get '/<path_to_resource>', action: :<action>, controller: '<controller>'
 ```
 
+This syntax leads to many options to play:
+
+##### Bound Parameters
+
+```ruby
+`get ``'photos(/:id)'``, to: ``'photos#display'`
+```
+
+If an incoming request of `/photos/1` is processed by this route (because it hasn't matched any previous route in the file), then the result will be to invoke the `display` action of the `PhotosController`, and to make the final parameter `"1"` available as `params[:id]`. This route will also route the incoming request of `/photos` to `PhotosController#display`, since `:id` is an optional parameter, denoted by parentheses.
+
+##### Dynamic Segments
+
+```ruby
+`get ``'photos/:id/:user_id'``, to: ``'photos#show'`
+```
+
+An incoming path of `/photos/1/2` will be dispatched to the `show` action of the `PhotosController`. `params[:id]` will be `"1"`, and `params[:user_id]` will be `"2"`.
+
+##### Static Segments
+
+```ruby
+`get ``'photos/:id/with_user/:user_id'``, to: ``'photos#show'`
+```
+
+This route would respond to paths such as `/photos/1/with_user/2`. In this case, `params` would be `{ controller: 'photos', action: 'show', id: '1', user_id: '2' }`.
+
+##### Query String
+
+```ruby
+`get ``'photos/:id'``, to: ``'photos#show'`
+```
+
+An incoming path of `/photos/1?user_id=2` will be dispatched to the `show` action of the `Photos` controller. `params` will be `{ controller: 'photos', action: 'show', id: '1', user_id: '2' }`.
+
 #### Singular Routes
 
 Sometimes, you have a resource that clients always look up without referencing an ID. For example, you would like `/profile` to always show the profile of the currently logged in user. In this case, you can use a singular resource to map `/profile` (rather than `/profile/:id`) to the `show` action:
