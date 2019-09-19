@@ -276,6 +276,16 @@ In order to speed up this repetitive process of creating a series of routes for 
  resources :posts
 ```
 
+#### Route Helpers
+
+In cases where in the same app it is required to call another resource, Rails has the route helpers to avoid the hardcoding of the URL.
+
+```ruby
+link_to "<text_to_be_shown>", <rest-op>_<resource>_path(<required_params)
+```
+
+All the helpers have the `_path` or the `_url.path` ending. The first one creates a relative path, and the other one creates the full URL.
+
 
 
 ## Deployments on Heroku
