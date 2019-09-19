@@ -282,6 +282,14 @@ If not all the REST operations are wanted, the `only` and `except` modifiers can
 resources :posts, only: [:inde, :show]
 ```
 
+#### Non-REST Routes
+
+Although it is recommendable to stick to the REST operations whenever possible, Rails allows the use of other routes.
+
+```ruby
+get '/<path_to_resource>', to: '<controller>#<action>'
+```
+
 #### Route Helpers
 
 In cases where in the same app it is required to call another resource, Rails has the route helpers to avoid the hardcoding of the URL.
@@ -291,8 +299,6 @@ link_to "<text_to_be_shown>", <rest-op>_<resource>_path(<required_params)
 ```
 
 All the helpers have the `_path` or the `_url.path` ending. The first one creates a relative path, and the other one creates the full URL.
-
-
 
 ## Deployments on Heroku
 
