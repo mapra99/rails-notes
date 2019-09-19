@@ -276,6 +276,12 @@ In order to speed up this repetitive process of creating a series of routes for 
  resources :posts
 ```
 
+If not all the REST operations are wanted, the `only` and `except` modifiers can be used.
+
+```ruby
+resources :posts, only: [:inde, :show]
+```
+
 #### Route Helpers
 
 In cases where in the same app it is required to call another resource, Rails has the route helpers to avoid the hardcoding of the URL.
