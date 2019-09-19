@@ -312,6 +312,13 @@ link_to "<text_to_be_shown>", <rest-op>_<resource>_path(<required_params)
 
 All the helpers have the `_path` or the `_url.path` ending. The first one creates a relative path, and the other one creates the full URL.
 
+These are the helpers that can be over a resource (given `photos` as a resource example):
+
+- `photos_path` returns `/photos`
+- `new_photo_path` returns `/photos/new`
+- `edit_photo_path(:id)` returns `/photos/:id/edit` (for instance, `edit_photo_path(10)` returns `/photos/10/edit`)
+- `photo_path(:id)` returns `/photos/:id` (for instance, `photo_path(10)` returns `/photos/10`)
+
 ## Deployments on Heroku
 
 There are some main changes that are needed to be made. 
