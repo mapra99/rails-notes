@@ -583,4 +583,12 @@ There will be two objects on the app: *users* and *microposts*. Each one will ha
   
 - Microposts
 
-  
+
+## References and Additional Resources
+
+1. [The Rails Guides]([https://guides.rubyonrails.org](https://guides.rubyonrails.org/))
+2. [Ruby on Rails Tutorial (Rails 5), by Michael Hartl](https://www.learnenough.com/ruby-on-rails-4th-edition-tutorial)
+3. [The Odin Project - Ruby on Rails Curriculum](https://www.theodinproject.com/courses/ruby-on-rails)
+4. [Video: What is MVC? Simple Explanation, by Traversy Media](https://youtu.be/pCvZtjoRq1I)
+5. [Video: What Is A RESTful API? Explanation of REST & HTTP. by Traversy Media](https://www.youtube.com/watch?v=Q-BpqyOT3a8)
+
