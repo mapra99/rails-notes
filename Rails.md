@@ -232,6 +232,24 @@ It takes care of the UI. It usually consists of HTML/CSS. It communicates with t
 
 The Controller takes in User Input, processes requests, gets data from model and passes data to the view (to the template engine).
 
+As a example, if the intention is to show all the posts and show them on the home page, the `index` controller of the `Posts` resource should be something like:
+
+```ruby
+  PostsController < ApplicationController
+    #...
+    def index
+      @posts = Post.all
+    end
+    #...
+  end
+```
+
+So when the Router calls the `index` action of the `Posts` resource, this method will call the Model to get all the posts in the database (`Post.all`) and it will automatically send it to the HTML file `app/vies/posts/index.html.erb` to process the way to print the posts. When the document is ready to show, it is given back to the controller and the controller sends the document to the browser, where the document is rendered.
+
+**Name of things matter!**. In order to let Rails keep all the automatized connections between the router, the controller and the view, it is necessary to follow the naming rules of the files and the classes.
+
+
+
 ### The Router
 
 The router is the component that really receives the requests and calls specific controllers. It's the doorman of the application.
