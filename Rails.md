@@ -249,7 +249,13 @@ So when the Router calls the `index` action of the `Posts` resource, this method
 **Name of things matter!**. In order to let Rails keep all the automatized connections between the router, the controller and the view, it is necessary to follow the naming rules of the files and the classes.
 
 1. If router calls the action `posts#index` then the method to receive this call must be named `index` , and it must be located in the `app/controllers/posts_controller.rb` file, inside the `PostsController` class. If in the router the REST architecture is being used and the routings are created with the shortcut `resources :posts` then it is even more important to keep the names of every method equal to the corresponding [REST operation](#rest-arquitecture) (`index`, `show`, `new`, `create`, `edit`, `update`, `delete`).
-2. 
+2. Once rails gets to the end of the controller action, all the instance variables from the controller are taken and sent to the HTML Document saved in the `app/views/posts/` directory. If the method in the controller is `index` then the file that will call this method at the end will be `index.html.erb`.
+
+If these rules are not accomplished, the relations between files and elements must be established manually.
+
+#### Rendering and Redirecting
+
+
 
 ### The Router
 
