@@ -305,7 +305,40 @@ def whitelisted_post_params
 end
 ```
 
-And this method is called wherever the parameters are needed, for example in `Post.new`.
+The `require` method takes as arguments all the params that are obligatory. If any of these are not received, the request will return an HTTP 400 Error.
+
+The `permit` method takes as arguments all the allowed parameters apart from the `required` ones.
+
+If the parameter is a scalar:
+
+```ruby
+params.permit(:id)
+```
+
+If the parameter is an array of scalars:
+
+```ruby
+params.permit(id: [])
+```
+
+If the parameter is a hash:
+
+```ruby
+params.permit(preferences: {})
+```
+
+If the parameters are nested:
+
+```ruby
+params.permit(:name, { emails: [] },
+              friends: [ :name,
+                         { family: [ :name ], hobbies: [] }])
+```
+
+This declaration permits the `name`, `emails`, and `friends` attributes. It is expected that `emails` will be an array of permitted scalar values, and that `friends` will be an array of resources with specific attributes: they should have a `name` attribute (any permitted scalar values allowed), a `hobbies` attribute as an array of permitted scalar values, and a `family` attribute which is restricted
+to having a `name` (any permitted scalar values allowed here, too).
+
+And finally this method is called wherever the parameters are needed, for example in `Post.new`.
 
 ```ruby
  @post = Post.new(whitelisted_post_params)
