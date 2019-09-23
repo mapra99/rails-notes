@@ -258,19 +258,19 @@ If these rules are not accomplished, the relations between files and elements mu
 There are cases when it is not wanted to render a view with the action's name. To override that default action that the controller does, the render must be redirected to the appropriate html file using `redirect_to_<resource_name>`
 
 ```ruby
-    # We know this will get run once we receive the submitted
-    # form from our NEW action above (remember your REST actions??)
-    # We'll just use pseudo-code for now to illustrate the point
-    def create
-      # code here to set up a new @post based on form info
-      if @post.save
-        # code to set up congratulations message
-        redirect_to post_path(@post.id) # go to show page for @post
-      else
-        # code to set up error message
-        render :new
-      end
-    end
+# We know this will get run once we receive the submitted
+# form from our NEW action above (remember your REST actions??)
+# We'll just use pseudo-code for now to illustrate the point
+def create
+	# code here to set up a new @post based on form info
+	if @post.save
+		# code to set up congratulations message
+		redirect_to post_path(@post.id) # go to show page for @post
+	else
+		# code to set up error message
+		render :new
+	end
+end
 ```
 
 **Renders and Redirects do not break the execution of the controller as `return` would**. This is important to have in mind when any `render`or `return` commands are written in a controller.
@@ -278,6 +278,24 @@ There are cases when it is not wanted to render a view with the action's name. T
 #### The Parameters
 
 The router wraps all the input data in a hash called `params`. This hash can be accessed by the controller to send the appropriate parameters to the model and view.
+
+It is recommended that for security reasons, the expected parameters should be declared in the controller, to avoid receiving suspicious variables. To do this, a new method should be created:
+
+```ruby
+# gives us back just the hash containing the params we need to
+# to create or update a post
+def whitelisted_post_params
+	params.require(:post).permit(:title,:body,:author_id)
+end
+```
+
+And this method is called wherever the parameters are needed, for example in `Post.new`.
+
+```ruby
+ @post = Post.new(whitelisted_post_params)
+```
+
+
 
 ### The Router
 
