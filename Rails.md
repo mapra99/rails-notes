@@ -280,7 +280,12 @@ end
 
 #### The Parameters
 
-The router wraps all the input data in a hash called `params`. This hash can be accessed by the controller to send the appropriate parameters to the model and view.
+The router wraps all the input data in a hash called `params`. This hash can be accessed by the controller to send the appropriate parameters to the model and view. The Parameters can be received in two ways:
+
+1. As part of a URL query.
+2. As part of an HTTP POST request.
+
+Rails doesn't distinguish among these two sources and both types are stored in `params`.
 
 It is recommended that for security reasons, the expected parameters should be declared in the controller, to avoid receiving suspicious variables. To do this, a new method should be created:
 
