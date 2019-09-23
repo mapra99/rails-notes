@@ -285,9 +285,17 @@ The router wraps all the input data in a hash called `params`. This hash can be 
 1. As part of a URL query.
 2. As part of an HTTP POST request.
 
-Rails doesn't distinguish among these two sources and both types are stored in `params`.
+Rails doesn't distinguish among these two sources and both types are stored in `params`. It is important to note that **the parameter values are always strings**.
 
-It is recommended that for security reasons, the expected parameters should be declared in the controller, to avoid receiving suspicious variables. To do this, a new method should be created:
+Parameters can be also hashes and arrays (not only one-dimensional data). To do receive an array, the URL must have a format similar to this:
+
+ ```ruby
+GET /clients?ids[]=1&ids[]=2&ids[]=3
+ ```
+
+If input data is expected in JSON format, if the header of the http request contains a parameter `Content-Type` equal to `a/pplication/json`, then Rails will interpret this input and convert it into a hash.
+
+It is also recommended that for security reasons, the expected parameters should be declared in the controller, to avoid receiving suspicious variables. To do this, a new method should be created:
 
 ```ruby
 # gives us back just the hash containing the params we need to
