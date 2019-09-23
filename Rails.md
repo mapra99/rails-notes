@@ -295,8 +295,6 @@ And this method is called wherever the parameters are needed, for example in `Po
  @post = Post.new(whitelisted_post_params)
 ```
 
-
-
 ### The Router
 
 The router is the component that really receives the requests and calls specific controllers. It's the doorman of the application.
