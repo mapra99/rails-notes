@@ -275,6 +275,8 @@ end
 
 **Renders and Redirects do not break the execution of the controller as `return` would**. This is important to have in mind when any `render`or `return` commands are written in a controller.
 
+**The big difference** between renders and redirects is that `renders` uses a view file holding all the instance variables, and `redirect` create a whole new HTTP request, deleting all instance data.
+
 #### The Parameters
 
 The router wraps all the input data in a hash called `params`. This hash can be accessed by the controller to send the appropriate parameters to the model and view.
@@ -306,8 +308,6 @@ flash[:success] = "Post created successfully"
 Then this flash will be called on the view.
 
 There is `flash` and `flash.now`. `flash` is used with `redirect`, and `flash.now` is used in `render`.
-
-
 
 #### A Simple Controller
 
