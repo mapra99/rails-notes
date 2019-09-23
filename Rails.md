@@ -255,7 +255,29 @@ If these rules are not accomplished, the relations between files and elements mu
 
 #### Rendering and Redirecting
 
+There are cases when it is not wanted to render a view with the action's name. To override that default action that the controller does, the render must be redirected to the appropriate html file using `redirect_to_<resource_name>`
 
+```ruby
+    # We know this will get run once we receive the submitted
+    # form from our NEW action above (remember your REST actions??)
+    # We'll just use pseudo-code for now to illustrate the point
+    def create
+      # code here to set up a new @post based on form info
+      if @post.save
+        # code to set up congratulations message
+        redirect_to post_path(@post.id) # go to show page for @post
+      else
+        # code to set up error message
+        render :new
+      end
+    end
+```
+
+**Renders and Redirects do not break the execution of the controller as `return` would**. This is important to have in mind when any `render`or `return` commands are written in a controller.
+
+#### The Parameters
+
+The router wraps all the input data in a hash called `params`. This hash can be accessed by the controller to send the appropriate parameters to the model and view.
 
 ### The Router
 
