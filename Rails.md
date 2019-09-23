@@ -352,7 +352,36 @@ The Flash is the set of messages that appear to the user giving events status. I
 flash[:success] = "Post created successfully"
 ```
 
-Then this flash will be called on the view.
+The flash can also be created on the `redirect` call:
+
+```ruby
+redirect_to root_url, notice: "You have successfully logged out."
+redirect_to root_url, alert: "You're stuck here!"
+redirect_to root_url, flash: { referral_code: 1234 }
+```
+
+Then this flash will be called on the view. The HTML document should have this:
+
+```erb
+<html>
+  <!-- <head/> -->
+  <body>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+ 
+    <!-- more content -->
+  </body>
+</html>
+```
+
+The flash can also be a boolean that leads to some html content to appear:
+
+```ruby
+<% if flash[:just_signed_up] %>
+  <p class="welcome">Welcome to our site!</p>
+<% end %>
+```
 
 There is `flash` and `flash.now`. `flash` is used with `redirect`, and `flash.now` is used in `render`.
 
