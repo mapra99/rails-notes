@@ -295,6 +295,45 @@ And this method is called wherever the parameters are needed, for example in `Po
  @post = Post.new(whitelisted_post_params)
 ```
 
+#### Flash
+
+The Flash is the set of messages that appear to the user giving events status. It is a hash, with these conventional keys: `:success, :error, :notice`. So:
+
+```ruby
+flash[:success] = "Post created successfully"
+```
+
+Then this flash will be called on the view.
+
+There is `flash` and `flash.now`. `flash` is used with `redirect`, and `flash.now` is used in `render`.
+
+
+
+#### A Simple Controller
+
+```ruby
+class PostsController < ApplicationController
+    # We know this will get run once we've received the submitted
+    # form from our new action above (remember your REST actions??)
+    def create
+      @post = Post.new(whitelisted_post_params)
+      if @post.save
+        flash[:success] = "Great! Your post has been created!"
+        redirect_to @post # go to show page for @post
+      else
+        flash.now[:error] = "Rats! Fix your mistakes, please."
+        render :new
+      end
+    end
+
+    private
+
+    def whitelisted_post_params
+      params.require(:post).permit(:title,:body,:author_id)
+    end
+ end
+```
+
 ### The Router
 
 The router is the component that really receives the requests and calls specific controllers. It's the doorman of the application.
